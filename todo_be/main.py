@@ -116,7 +116,7 @@ def update_task(
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
 
-    if task.status == TaskStatus.DONE:
+    if task.status == TaskStatus.DONE and task_data.status != TaskStatus.DONE:
         raise HTTPException(
             status_code=400,
             detail="Completed tasks cannot be modified"
